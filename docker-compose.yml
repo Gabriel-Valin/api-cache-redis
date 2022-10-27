@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  app:
+    container_name: api
+    build: .
+    depends_on:
+      - redis
+    ports:
+      - "3130:3130"
+    volumes:
+      - .:/usr/app
+  redis:
+    container_name: redis
+    image: bitnami/redis:latest
+    environment:
+      - REDIS_PASSWORD=password
+    ports:
+      - "6379:6379"
